@@ -1,2 +1,2 @@
 # phagetool
-A tool to identify potential phage candidates that infect bacteria
+An evolution-proof tool that identifies phage cocktails to treat bacterial infections
