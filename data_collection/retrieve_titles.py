@@ -1,11 +1,5 @@
-get_ipython().system('pip install bio')
 from Bio import Entrez,SeqIO
-from Bio.SeqFeature import SeqFeature, FeatureLocation
-import pandas as pd
-import numpy as np
 import time
-
-Entrez.email = 'alekey039@hotmail.com'
 
 #Retrieve titles and accessions
 

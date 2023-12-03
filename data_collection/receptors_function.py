@@ -1,9 +1,6 @@
-get_ipython().system('pip install bio')
-from Bio import Entrez,SeqIO
-from Bio.SeqFeature import SeqFeature, FeatureLocation
-import pandas as pd
-import numpy as np
-import time
+from .retrieve_ids import retrieve_ids
+from .retrieve_titles import retrieve_summary, fix_unnamed
+from .retrieve_sequences import fetch_sequences
 
 #Retrieve receptor titles and sequences for a specific pathogenic host
 
