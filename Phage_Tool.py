@@ -3,8 +3,6 @@
 
 # In[1]:
 
-
-get_ipython().system('pip install bio')
 from Bio import Entrez,SeqIO
 from Bio.SeqFeature import SeqFeature, FeatureLocation
 import pandas as pd
@@ -400,7 +398,7 @@ def receptors(maxm,db,query):
   return titles, aaseqs
 
 
-# In[28]:
+# In[5]:
 
 
 maxm = 200
@@ -408,6 +406,7 @@ db = 'ipg'
 alltitles = []
 allseqs = []
 species = [] 
+
 
 for pathogen in upat:
     query = str(pathogen)+'[ORGN] AND receptor[All fields]'
@@ -417,11 +416,30 @@ for pathogen in upat:
     allseqs += aaseqs
     species.extend([str(pathogen)]*len(titles))
     print(len(titles), len(aaseqs))
-    
+    with open('output.txt', 'a') as file:  
+        file.write(f"{pathogen}\t{len(titles)}\t{len(aaseqs)}\n")
 
-  #add species list (to link it to the phage)
-  #run this locally
 
+# In[ ]:
+
+
+with open('allseqs.txt', 'w') as file:
+    for seq in allseqs:
+        file.write("%s\n" % seq)
+
+from IPython.display import FileLink
+FileLink('allseqs.txt')
+
+
+# In[ ]:
+
+
+with open('alltitles.txt', 'w') as file:
+    for title in alltitles:
+        file.write("%s\n" % item)
+
+from IPython.display import FileLink
+FileLink('alltitles.txt')
 
 
 # In[ ]:
@@ -429,6 +447,12 @@ for pathogen in upat:
 
 titles_unique = protdict(alltitles)
 protein_dictionary_v2 = protdictv2(alltitles, allseqs)
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:
