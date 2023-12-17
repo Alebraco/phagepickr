@@ -3,6 +3,8 @@
 
 # In[1]:
 
+
+get_ipython().system('pip install bio')
 from Bio import Entrez,SeqIO
 from Bio.SeqFeature import SeqFeature, FeatureLocation
 import pandas as pd
@@ -109,27 +111,38 @@ titles, acc = retrieve_summary(ids, max)
 #Retrieving AA sequences
 
 def fetch_sequences(acc):
-    sleep_time = 1
     aaseqs = []
-
+    max_attempts = 5
+    
     for a in acc:
-      try:
-        handle = Entrez.efetch(db = 'protein', id = a, rettype = 'gb', retmode = 'text')
-        #output = list(SeqIO.parse(handle, 'gb'))
-        output = list(SeqIO.parse(handle, 'gb'))
-        handle.close()
-        if not output: 
-            print('Sequence not found. Accession number:', a)
-        for record in output:
-            aaseqs.append(str(record.seq))
+        attempt = 0
+        sequence_fetched = False
 
-      except Exception as error:
-        print('Error fetching data, trying again in', sleep_time,'seconds:', error)
-        time.sleep(sleep_time)
-        sleep_time *= 2
+        while attempt < max_attempts:
+            try:
+                handle = Entrez.efetch(db='protein', id=a, rettype='gb', retmode='text')
+                output = list(SeqIO.parse(handle, 'gb'))
+                handle.close()
 
-    #Reading sequences and adding them to a list
-    #aaseqs = [str(entry.seq) for entry in output]
+                if output:
+                    for record in output:
+                        aaseqs.append(str(record.seq))
+                    sequence_fetched = True
+                    break  
+                else:
+                    print('No sequence found for accession number', a)
+                    aaseqs.append("No Sequence Found") 
+                    break
+
+            except Exception as error:
+                print('Error fetching data, trying again in', 2 ** retries, 'seconds:', error)
+                time.sleep(2 ** retries) 
+                retries += 1
+
+        if not sequence_fetched and retries == max_retries:
+            print(f"Failed to retrieve data for accession number {a}.")
+            aaseqs.append("No Sequence")
+
     return aaseqs
 
 
@@ -398,7 +411,7 @@ def receptors(maxm,db,query):
   return titles, aaseqs
 
 
-# In[5]:
+# In[ ]:
 
 
 maxm = 200
