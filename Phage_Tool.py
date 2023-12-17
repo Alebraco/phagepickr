@@ -3,8 +3,6 @@
 
 # In[1]:
 
-
-get_ipython().system('pip install bio')
 from Bio import Entrez,SeqIO
 from Bio.SeqFeature import SeqFeature, FeatureLocation
 import pandas as pd
@@ -140,8 +138,8 @@ def fetch_sequences(acc):
                 retries += 1
 
         if not sequence_fetched and retries == max_retries:
-            print(f"Failed to retrieve data for accession number {a}.")
-            aaseqs.append("No Sequence")
+            print("Failed to retrieve data for accession number", a)
+            aaseqs.append("No Sequence Found")
 
     return aaseqs
 
