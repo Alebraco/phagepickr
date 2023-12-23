@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[5]:
+
 
 from Bio import Entrez,SeqIO
 from Bio.SeqFeature import SeqFeature, FeatureLocation
@@ -10,13 +11,13 @@ import numpy as np
 import time
 
 
-# In[2]:
+# In[6]:
 
 
 Entrez.email = 'alekey039@hotmail.com'
 
 
-# In[3]:
+# In[7]:
 
 
 def retrieve_ids(max, db, query):
@@ -45,7 +46,7 @@ def retrieve_ids(max, db, query):
   return ids
 
 
-# In[4]:
+# In[8]:
 
 
 #Can be a separate function
@@ -59,7 +60,7 @@ query = str(strain)+'[ORGN] AND receptor[All fields]'
 ids = retrieve_ids(max, db, query)
 
 
-# In[5]:
+# In[12]:
 
 
 def retrieve_summary(ids, max):
@@ -94,7 +95,7 @@ def retrieve_summary(ids, max):
   return titles, acc
 
 
-# In[6]:
+# In[13]:
 
 
 max = 40
@@ -103,14 +104,14 @@ dbs = 'ipg'
 titles, acc = retrieve_summary(ids, max)
 
 
-# In[7]:
+# In[14]:
 
 
 #Retrieving AA sequences
 
 def fetch_sequences(acc):
     aaseqs = []
-    max_attempts = 5
+    max_attempts = 10
     
     for a in acc:
         attempt = 0
@@ -128,30 +129,30 @@ def fetch_sequences(acc):
                     sequence_fetched = True
                     break  
                 else:
-                    print('No sequence found for accession number', a)
+                    print('No sequence found for accession number ', a)
                     aaseqs.append("No Sequence Found") 
                     break
 
             except Exception as error:
-                print('Error fetching data, trying again in', 2 ** retries, 'seconds:', error)
-                time.sleep(2 ** retries) 
-                retries += 1
+                print('Error fetching data, trying again in', 2 ** attempt, 'seconds:', error)
+                time.sleep(2 ** attempt) 
+                attempt += 1
 
-        if not sequence_fetched and retries == max_retries:
-            print("Failed to retrieve data for accession number", a)
+        if not sequence_fetched and attempt == max_attempts:
+            print('Failed to retrieve data for accession number ', a)
             aaseqs.append("No Sequence Found")
 
     return aaseqs
 
 
-# In[8]:
+# In[15]:
 
 
 #Execute the function above
 aaseqs = fetch_sequences(acc)
 
 
-# In[9]:
+# In[16]:
 
 
 #Naming unnamed proteins
@@ -164,13 +165,13 @@ def fix_unnamed(titles):
   return titles
 
 
-# In[10]:
+# In[17]:
 
 
 titles = fix_unnamed(titles)
 
 
-# In[11]:
+# In[18]:
 
 
 #Version 1
@@ -187,7 +188,7 @@ def protdict (titles):
   return titles_unique
 
 
-# In[12]:
+# In[19]:
 
 
 #Version 2 dictionary
@@ -215,14 +216,14 @@ def protdictv2 (titles, aaseqs):
   return protein_dictionary_v2
 
 
-# In[13]:
+# In[20]:
 
 
 titles_unique = protdict(titles)
 protein_dictionary_v2 = protdictv2(titles, aaseqs)
 
 
-# In[14]:
+# In[21]:
 
 
 #Creating DataFrame of Version 1 dictionary
@@ -233,7 +234,7 @@ df[strain] = df['Protein Name'].isin(titles)
 df
 
 
-# In[15]:
+# In[22]:
 
 
 #Creating DataFrame of Version 2 dictionary
@@ -247,7 +248,7 @@ df2.drop('AAseq', axis = 1, inplace = True)
 df2
 
 
-# In[16]:
+# In[23]:
 
 
 #Download pathogenic bacteria list from Barlett et al.
@@ -256,7 +257,7 @@ url = 'https://github.com/padpadpadpad/bartlett_et_al_2022_human_pathogens/raw/m
 bdf = pd.read_excel(url, sheet_name='Tab 6 Full List', usecols="F:G", skiprows=0)
 
 
-# In[17]:
+# In[24]:
 
 
 #Convert dataframe to list
@@ -265,7 +266,7 @@ bdf = pd.read_excel(url, sheet_name='Tab 6 Full List', usecols="F:G", skiprows=0
 pblist = list(bdf['genus'] + ' ' + bdf['species'])
 
 
-# In[18]:
+# In[25]:
 
 
 # Found random characters
@@ -274,7 +275,7 @@ pblist = list(bdf['genus'] + ' ' + bdf['species'])
 clean_pathogen_list = [species.replace('¬†','') for species in pblist]
 
 
-# In[19]:
+# In[26]:
 
 
 max = 100
@@ -286,7 +287,7 @@ NOT wgs[PROP] NOT cellular organisms[ORGN] NOT AC_000001:AC_999999[PACC]'
 phageids = retrieve_ids(max, db, query)
 
 
-# In[20]:
+# In[27]:
 
 
 #Input: IDs of phages
@@ -340,13 +341,13 @@ def phageid_to_host(phageids):
   return phageinfo
 
 
-# In[21]:
+# In[28]:
 
 
 #phageinfo = phageid_to_host(phageids)
 
 
-# In[22]:
+# In[29]:
 
 
 # def select_hosts(phinfo, patlist):
@@ -360,14 +361,14 @@ def phageid_to_host(phageids):
 #   return pathost
 
 
-# In[23]:
+# In[30]:
 
 
 #Create list of dictionaries for phages with pathogen hosts
 # pathost = select_hosts(phageinfo, clean_pathogen_list)
 
 
-# In[24]:
+# In[31]:
 
 
 #List of unique pathogen hosts
@@ -378,7 +379,7 @@ def phageid_to_host(phageids):
 #     uniquepat.append(phage['host'])
 
 
-# In[25]:
+# In[32]:
 
 
 file_path = 'uniquepat.txt'
@@ -396,7 +397,7 @@ with open(file_path, 'r') as file:
 print(upat)
 
 
-# In[26]:
+# In[33]:
 
 
 def receptors(maxm,db,query):
@@ -409,48 +410,43 @@ def receptors(maxm,db,query):
   return titles, aaseqs
 
 
-# In[ ]:
+# In[34]:
+
+
+try:
+    with open('output.json', 'r') as file:
+        data = json.load(file)
+        
+        if data == "":
+            raise ValueError
+except:
+    data = {'titles': [], 'sequences': [], 'species': []}
+
+
+# In[35]:
 
 
 maxm = 200
 db = 'ipg'
-alltitles = []
-allseqs = []
-species = [] 
-
 
 for pathogen in upat:
     query = str(pathogen)+'[ORGN] AND receptor[All fields]'
     print(pathogen)
     titles, aaseqs = receptors(maxm,db,query)
-    alltitles += titles
-    allseqs += aaseqs
-    species.extend([str(pathogen)]*len(titles))
+    data['titles'].extend(titles)
+    data['sequences'].extend(aaseqs)
+    data['species'].extend([str(pathogen)]*len(titles))
     print(len(titles), len(aaseqs))
+    
+    if len(data['titles'] > 10000):
+        with open('output.json', 'w') as file:
+            json.dump(data,file)
+    
     with open('output.txt', 'a') as file:  
         file.write(f"{pathogen}\t{len(titles)}\t{len(aaseqs)}\n")
-
-
-# In[ ]:
-
-
-with open('allseqs.txt', 'w') as file:
-    for seq in allseqs:
-        file.write("%s\n" % seq)
-
-from IPython.display import FileLink
-FileLink('allseqs.txt')
-
-
-# In[ ]:
-
-
-with open('alltitles.txt', 'w') as file:
-    for title in alltitles:
-        file.write("%s\n" % item)
-
-from IPython.display import FileLink
-FileLink('alltitles.txt')
+        
+with open(output.json, 'w') as file:
+    json.dump(data, file)
 
 
 # In[ ]:
@@ -458,22 +454,4 @@ FileLink('alltitles.txt')
 
 titles_unique = protdict(alltitles)
 protein_dictionary_v2 = protdictv2(alltitles, allseqs)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
