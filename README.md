@@ -17,7 +17,7 @@ This part of the code involves defining functions to fetch data from the NCBI da
 ### 2. Pathogenic Bacteria
 This section is focused on processing information related to pathogenic bacteria. It includes:
 
-- **Downloading Pathogenic Bacteria List**: Fetching a list of pathogenic bacteria from an Barlett et al.
+- **Downloading Pathogenic Bacteria List**: Fetching a list of pathogenic bacteria from Barlett et al. (2022).
   
 - **Clean and Prepare Bacteria List**: Removing unwanted characters from the bacteria list and combining genus and species names.
 
