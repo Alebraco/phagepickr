@@ -7,7 +7,7 @@ The code is divided into two main parts: Data Collection and Bacteria.
 This part of the code involves defining functions to fetch data from the NCBI database. It includes:
 
 - **Function Definitions**:
-    - `retrieve_ids`: Fetches IDs from the 'Identical Protein Groups' NCBI database.
+    - `retrieve_ids`: Fetches IDs from an NCBI database.
     - `retrieve_summary`: Retrieves titles for given IDs from the database.
     - `fetch_sequences`: Fetches amino acid sequences for given accession numbers.
     - `fix_unnamed`: Renames unnamed proteins to maintain clarity in data.
