@@ -8,9 +8,9 @@ This part of the code involves defining functions to fetch data from the NCBI da
 
 - **Function Definitions**:
     - `retrieve_ids`: Fetches IDs from an NCBI database.
-    - `retrieve_summary`: Retrieves titles for given IDs from the database.
+    - `retrieve_titles`: Retrieves titles for given IDs from the 'Identical Protein Groups' NCBI database.
+    - `fix_unnamed`: Renames unnamed proteins (empty strings) to maintain clarity in data.
     - `fetch_sequences`: Fetches amino acid sequences for given accession numbers.
-    - `fix_unnamed`: Renames unnamed proteins to maintain clarity in data.
     - `protdict` and `protdictv2`: Create dictionaries for protein data, based on unique titles or amino acid sequences
     - `receptors`: Combines previously defined functions (`retrieve_ids`, `retrieve_summary`, `fetch_sequences`, `fix_unnamed`) and returns a list of titles and sequences for a specific pathogen.
 
