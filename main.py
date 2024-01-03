@@ -10,8 +10,7 @@ with open(file, 'r') as f:
   upat = [line.strip() for line in f]
   
 
-maxm = 200
-db = 'ipg'
+maxrec = 200
 alltitles = []
 allseqs = []
 species = []
@@ -19,7 +18,7 @@ species = []
 for pathogen in upat:
     query = str(pathogen)+'[ORGN] AND receptor[All fields]'
     print(pathogen)
-    titles, aaseqs = receptors(maxm,db,query)
+    titles, aaseqs = receptors(query, maxrec)
     alltitles += titles
     allseqs += aaseqs
     species.extend([str(pathogen)]*len(titles))
