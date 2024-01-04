@@ -17,7 +17,7 @@ This part of the code involves defining functions to fetch data from the NCBI da
     - Description: Fetches amino acid sequences for given accession numbers.
 - **Receptors Function** ([receptors_function.py](https://github.com/Alebraco/phagetool/blob/main/data_collection/receptors_function.py)):
     - Function: `receptors`
-    - Description: Combines previously defined functions to retrieve names and sequences of receptor proteins in a specific pathogenic species.
+    - Description: Combines previously defined functions to retrieve receptor proteins names and sequences of a specific pathogenic species.
 - **Title Processing** ([title_processing.py](https://github.com/Alebraco/phagetool/blob/main/data_collection/title_processing.py)):
     - Functions: `unique_titles` and `protdict`
     - Description: Organize protein data for analysis, based on unique titles or amino acid sequences
