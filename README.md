@@ -6,24 +6,19 @@ The code is divided into two main parts: Data Collection and Bacteria.
 ### 1. Data Collection
 This part of the code involves defining functions to fetch data from the NCBI database. It includes:
 
-- **Protein ID Retrieval**:
-    - [protein_ids.py](https://github.com/Alebraco/phagetool/blob/main/data_collection/protein_ids.py)
+- **Protein ID Retrieval** ([protein_ids.py](https://github.com/Alebraco/phagetool/blob/main/data_collection/protein_ids.py)):
     - Function: `retrieve_ids`
     - Description: Fetches IDs from an NCBI database based on a given query
-- **Protein Names**:
-    - [protein_names.py](https://github.com/Alebraco/phagetool/blob/main/data_collection/protein_names.py)
+- **Protein Names** ([protein_names.py](https://github.com/Alebraco/phagetool/blob/main/data_collection/protein_names.py)):
     - Functions: `retrieve_ids`, `fix_unnamed`
     - Description: Retrieves protein names and accession numbers for given IDs. Also renames unnamed proteins (empty strings) for consistency.
-- **Sequence Retrieval**:
-    - [sequences.py](https://github.com/Alebraco/phagetool/blob/main/data_collection/sequences.py)
+- **Sequence Retrieval** ([sequences.py](https://github.com/Alebraco/phagetool/blob/main/data_collection/sequences.py)):
     - Function: `fetch_sequences`
     - Description: Fetches amino acid sequences for given accession numbers.
-- **Receptors Function**:
-    - [receptors_function.py](https://github.com/Alebraco/phagetool/blob/main/data_collection/receptors_function.py)
+- **Receptors Function** ([receptors_function.py](https://github.com/Alebraco/phagetool/blob/main/data_collection/receptors_function.py)):
     - Function: `receptors`
     - Description: Combines previously defined functions to retrieve names and sequences of receptor proteins in a specific pathogenic species.
-- **Title Processing**:
-    - [title_processing.py](https://github.com/Alebraco/phagetool/blob/main/data_collection/title_processing.py)
+- **Title Processing** ([title_processing.py](https://github.com/Alebraco/phagetool/blob/main/data_collection/title_processing.py)):
     - Functions: `unique_titles` and `protdict`
     - Description: Organize protein data for analysis, based on unique titles or amino acid sequences
 
