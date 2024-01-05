@@ -1,29 +1,11 @@
-from data_collection.receptors_function import receptors
-from Bio import Entrez
+from data_collection.pathogen_processing import read_pathogens, query_pathogens
+from utils.user_interaction import entrez_email
+from utils.data_management import store_data
 
-print("Please enter your email address for NCBI Entrez. This is required for identification purposes by NCBI when making requests.")
-user_email = input("Enter your Entrez email: ")
-Entrez.email = user_email
-
-file = 'uniquepat.txt'
-with open(file, 'r') as f:
-  upat = [line.strip() for line in f]
+if __name__ == '__main__':
+  entrez_email()
+  upat = read_pathogens('uniquepat.txt')
+  output_file = 'receptor_data.json'
+  data = query_pathogens(upat, 200, output_file)
+  store_data(data, output_file)
   
-
-maxrec = 200
-alltitles = []
-allseqs = []
-species = []
-
-for pathogen in upat:
-    query = str(pathogen)+'[ORGN] AND receptor[All fields]'
-    print(pathogen)
-    titles, aaseqs = receptors(query, maxrec)
-    alltitles += titles
-    allseqs += aaseqs
-    species.extend([str(pathogen)]*len(titles))
-    print(len(titles), len(aaseqs))
-
-
-
-

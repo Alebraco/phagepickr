@@ -9,7 +9,7 @@ def receptors(query, maxrec = 50):
   Args:
     query (str): A string used to query the database. The format should match 
       the specific requirements of the database.
-    maxrec (int, optional): The number of records to retrieve for each batch
+    maxrec (int, optional): The number of records to retrieve for each batch.
     
   Returns:
     tuple: A tuple containing two lists. The first list contains the protein 
