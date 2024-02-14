@@ -10,7 +10,7 @@ This part of the code involves defining functions to fetch data from the NCBI da
     - Function: `retrieve_ids`
     - Description: Fetches IDs from an NCBI database based on a given query.
 - **Protein Names** ([protein_names.py](https://github.com/Alebraco/phagetool/blob/main/data_collection/protein_names.py)):
-    - Functions: `retrieve_ids`, `fix_unnamed`
+    - Functions: `retrieve_titles`, `fix_unnamed`
     - Description: Retrieves protein names and accession numbers for given IDs. Also renames unnamed proteins (empty strings) for consistency.
 - **Sequence Retrieval** ([sequences.py](https://github.com/Alebraco/phagetool/blob/main/data_collection/sequences.py)):
     - Function: `fetch_sequences`
