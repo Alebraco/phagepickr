@@ -1,0 +1,201 @@
+Aeromonas hydrophila
+Aeromonas veronii
+Vibrio parahaemolyticus
+Escherichia coli
+Escherichia
+Yersinia pseudotuberculosis
+Salmonella enterica
+Vibrio cholerae
+Gordonia terrae
+Gordonia rubripertincta
+Klebsiella pneumoniae
+Listeria monocytogenes
+Pseudomonas aeruginosa
+Enterococcus faecalis
+Bacillus pumilus
+Bacillus cereus
+Staphylococcus aureus
+Bacillus thuringiensis
+Staphylococcus xylosus
+Serratia marcescens
+Pseudomonas
+Vibrio alginolyticus
+Vibrio anguillarum
+Proteus mirabilis
+Pseudomonas fluorescens
+Arthrobacter
+Rhizobium
+Bifidobacterium dentium
+Curtobacterium
+Rothia dentocariosa
+Microbacterium paraoxydans
+Mycobacterium smegmatis
+Rhodococcus erythropolis
+Streptomyces
+Providencia stuartii
+Stenotrophomonas maltophilia
+Salmonella
+Salmonella enteritidis
+Bacillus anthracis
+Shigella boydii
+Bacillus subtilis
+Sphingomonas
+Hafnia paralvei
+Pseudomonas putida
+Klebsiella
+Kosakonia cowanii
+Pantoea dispersa
+Enterobacter cloacae
+Enterococcus faecium
+Aeromonas
+Shigella flexneri
+Cronobacter
+Clostridium perfringens
+Burkholderia gladioli
+Burkholderia cenocepacia
+Cronobacter sakazakii
+Klebsiella aerogenes
+Ochrobactrum
+Ochrobactrum intermedium
+Ochrobactrum anthropi
+Streptococcus pneumoniae
+Shewanella
+Aeromonas salmonicida
+Yersinia enterocolitica
+Burkholderia pseudomallei
+Burkholderia glumae
+Yersinia pestis
+Agrobacterium tumefaciens
+Staphylococcus epidermidis
+Alcaligenes faecalis
+Enterobacter hormaechei
+Microbacterium
+Staphylococcus
+Bacillus
+Flavobacterium
+Vibrio harveyi
+Burkholderia thailandensis
+Enterococcus
+Bacteroides thetaiotaomicron
+Acinetobacter pittii
+Streptomyces griseus
+Staphylococcus pseudintermedius
+Leuconostoc pseudomesenteroides
+Serratia
+Citrobacter rodentium
+Citrobacter amalonaticus
+Mycobacterium
+Mycobacterium abscessus
+Achromobacter
+Providencia rettgeri
+Shigella dysenteriae
+Acinetobacter baumannii
+Pantoea agglomerans
+Photobacterium damselae
+Enterobacter aerogenes
+Campylobacter jejuni
+Campylobacter
+Citrobacter freundii
+Lactobacillus delbrueckii
+Burkholderia cepacia
+Rhodococcus globerulus
+Acinetobacter johnsonii
+Clostridioides difficile
+Actinomyces naeslundii
+Burkholderia ambifaria
+Pasteurella multocida
+Mannheimia haemolytica
+Lactobacillus plantarum
+Bordetella bronchiseptica
+Salmonella typhimurium
+Haemophilus influenzae
+Chlamydophila pneumoniae
+Lactococcus
+Proteus penneri
+Shigella sonnei
+Fusobacterium nucleatum
+Achromobacter xylosoxidans
+Achromobacter animicus
+Enterobacter asburiae
+Corynebacterium xerosis
+Raoultella ornithinolytica
+Edwardsiella tarda
+Raoultella
+Cronobacter turicensis
+Vibrio
+Sphingomonas paucimobilis
+Eggerthella lenta
+Shigella
+Brevibacterium iodinum
+Leclercia adecarboxylata
+Cronobacter malonaticus
+Lactococcus garvieae
+Leuconostoc mesenteroides
+Lactobacillus rhamnosus
+Klebsiella oxytoca
+Serratia rubidaea
+Providencia
+Morganella
+Weissella
+Enterobacter
+Propionibacterium acnes
+Stenotrophomonas
+Enterobacter cancerogenus
+Tsukamurella inchonensis
+Vibrio vulnificus
+Paracoccus
+Acinetobacter
+Delftia tsuruhatensis
+Brucella inopinata
+Clostridium tetani
+Tsukamurella paurometabola
+Gordonia sputi
+Erysipelothrix rhusiopathiae
+Gordonia
+Salmonella typhi
+Lactobacillus gasseri
+Citrobacter
+Streptococcus mutans
+Staphylococcus haemolyticus
+Delftia
+Streptococcus pyogenes
+Staphylococcus hominis
+Morganella morganii
+Lelliottia
+Rhodococcus equi
+Psychrobacter
+Staphylococcus saprophyticus
+Erwinia
+Paenibacillus glucanolyticus
+Mycobacterium avium
+Agrobacterium
+Helicobacter pylori
+Clostridium sporogenes
+Staphylococcus capitis
+Lactobacillus
+Brucella melitensis
+Brucella abortus
+Streptococcus suis
+Cutibacterium acnes
+Listeria
+Staphylococcus pasteuri
+Streptococcus salivarius
+Bacteroides fragilis
+Rhodococcus rhodochrous
+Nocardia brasiliensis
+Delftia acidovorans
+Aggregatibacter actinomycetemcomitans
+Burkholderia pyrrocinia
+Streptococcus oralis
+Lactobacillus jensenii
+Streptococcus gordonii
+Streptococcus equi
+Streptococcus dysgalactiae
+Streptococcus mitis
+Mycobacterium tuberculosis
+Kluyvera cryocrescens
+Clostridium botulinum
+Parabacteroides distasonis
+Ralstonia pickettii
+Spiroplasma
+Chlamydia psittaci
