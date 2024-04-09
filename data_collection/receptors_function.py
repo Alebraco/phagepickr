@@ -17,12 +17,11 @@ def receptors(query, maxrec = 50):
   
   '''
 
-  ids = retrieve_ids(query, db = 'ipg', maxrec = maxrec)
-  titles, acc = retrieve_titles(ids, db = 'ipg', maxrec = maxrec)
-  aaseqs = fetch_sequences(acc)
+  ids = retrieve_ids(query, db = 'ipg', maxrec = recs)
+  titles, acc = retrieve_titles(ids, db = 'ipg', maxrec = recs)
   titles = fix_unnamed(titles)
 
-  return titles, aaseqs
+  return titles
 
 
 

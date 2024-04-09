@@ -24,6 +24,7 @@ def phageid_to_host(phageids):
         strain = strain[0]
         phage_dict['phage'] = qual['organism'][0]
         phage_dict['id'] = id
+        phage_dict['acc'] = source.id
         phage_dict['strain'] = strain
 
         split = strain.split(" ", 2)
