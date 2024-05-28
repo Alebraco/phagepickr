@@ -4,6 +4,7 @@ from utils.data_management import store_data
 
 if __name__ == '__main__':
   entrez_email()
+    
   upat = read_pathogens('uniquepat.txt')
   output_file = 'receptor_data.json'
   data = query_pathogens(upat, 200, output_file)
