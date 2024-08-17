@@ -1,4 +1,4 @@
-from Bio import Entrez,SeqIO
+from Bio import Entrez
 import time
 
 def retrieve_titles(ids, db = 'ipg', maxrec = 50):
@@ -17,7 +17,6 @@ def retrieve_titles(ids, db = 'ipg', maxrec = 50):
   """
   
   titles = [] # Initialize titles list
-  acc = [] # Initialize accession numbers list
   start = 0 # Start index for batch retrieval
   sleep_time = 1 # Initial sleep time for retrying after an error
 
@@ -42,11 +41,10 @@ def retrieve_titles(ids, db = 'ipg', maxrec = 50):
     # Extract titles and accession numbers from retrieved data
     for entry in ipgsum['DocumentSummarySet']['DocumentSummary']:
       titles.append(entry['Title'])
-      acc.append(entry['Accession'])
 
     start += maxrec # Update start index for next batch
     
-  return titles, acc
+  return titles
 
 
 def fix_unnamed(titles):

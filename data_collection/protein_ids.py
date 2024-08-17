@@ -1,4 +1,4 @@
-from Bio import Entrez,SeqIO
+from Bio import Entrez
 import time
 
 def retrieve_ids(query, db, maxrec = 50):

@@ -11,3 +11,16 @@ def entrez_email():
   print("This is required for identification purposes by NCBI.")
   user_email = input("Enter your Entrez email: ")
   Entrez.email = user_email
+
+def alignment_choice():
+    valid = False
+    while not valid:
+        choice = int(input('How would you like to select phages?\n'
+                       '1. Choose phages randomly\n'
+                       '2. Align phage genomes for maximum diversity\n'
+                       'Enter your choice (1 or 2): '))
+        if choice == 1 or choice == 2:
+            valid = True
+        else: 
+            print('Invalid choice. Please try again.')
+    return int(choice)

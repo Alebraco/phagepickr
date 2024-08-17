@@ -66,7 +66,7 @@ def query_pathogens(upat, maxrec, output_file):
     # If 10 000 elements or more, store the data 
     if element_counter >= 10000:
         store_data(data, output_file)
-        element_count = 0 # Reset the counter after saving data
+        element_counter = 0 # Reset the counter after saving data
         
   # Return the dictionary with data on receptor proteins
   return data

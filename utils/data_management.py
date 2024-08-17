@@ -13,6 +13,7 @@ def read_data(file):
   try:
     with open(file, 'r') as f:
         data = json.load(f)
+    return data
   # Return None if the file cannot be read or does not exist 
   except:
     return None

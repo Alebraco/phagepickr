@@ -1,5 +1,4 @@
 from Bio import Entrez,SeqIO
-from Bio.SeqFeature import SeqFeature, FeatureLocation
 import time
 
 #Use phage IDs to retrieve host and strain information
