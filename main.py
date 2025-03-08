@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import sys
 
 from utils.user_interaction import entrez_email, alignment_choice
 from utils.data_management import read_data
@@ -11,7 +12,14 @@ from cocktail.phage_seqs import phage_genomes
 from cocktail.final import indices_to_accn, accession_cocktail, final_cocktail
 
 if __name__ == '__main__':
-    entrez_email()
+    if len(sys.argv) != 4:
+        print('Usage: python main.py <target_species> <alignment_choice> <entrez_email>')
+        sys.exit(1)
+    
+    target = sys.argv[1]
+    choice = int(sys.argv[2])
+    entrez_email(sys.argv[3])
+   
     receptor_data = read_data('receptor_data.json')
     phageinfo = read_data('phagedicts.json')
     
