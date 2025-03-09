@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import os
+import io
 from phagepickr.utils.user_interaction import entrez_email, alignment_choice
 from phagepickr.utils.data_management import read_data
 from phagepickr.cocktail.dataframe import receptor_df, produce_array, remove_ifmember
@@ -9,6 +11,9 @@ from phagepickr.cocktail.random import random_cocktail
 from phagepickr.cocktail.alignment import most_diverse_phages
 from phagepickr.cocktail.phage_seqs import phage_genomes
 from phagepickr.cocktail.final import indices_to_accn, accession_cocktail, final_cocktail
+
+if hasattr(sys.stdout, 'buffer'):
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, write_through=True)
 
 def cli():
     if len(sys.argv) != 4:
