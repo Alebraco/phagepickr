@@ -47,7 +47,7 @@ def cli():
         candidate_accs = accession_cocktail(diverse_accn, similar_phages)
         product = final_cocktail(candidate_accs, phageinfo)
         
-    print(product)
+    print(product, flush=True)
 
 if __name__ == '__main__':
     cli()
