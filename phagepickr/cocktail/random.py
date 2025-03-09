@@ -9,7 +9,7 @@ def random_cocktail(similar_phages):
     valid = False
     while not valid:
         try:
-            selection_str = input(f'Choose up to {minrand} phages for each species: ')
+            selection_str = input(f'Choose up to {minrand} phage(s) for each species: ')
             selection = int(selection_str)
             if selection <= minrand:
                 valid = True
