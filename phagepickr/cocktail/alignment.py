@@ -17,7 +17,7 @@ def align_sequences(input_file, output_file):
        result = subprocess.run(mafft_command, shell=True, capture_output = True)
        
     else:
-        mafft_command = f'mafft --auto --quiet {input_file} > {output_file}'
+        mafft_command = f'mafft --auto {input_file} > {output_file}'
         
         result = subprocess.run(mafft_command, shell=True, capture_output = True)
         
