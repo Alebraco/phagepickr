@@ -16,4 +16,8 @@ def alignment_choice(choice):
     if choice not in ["1", "2"]:
         print('Invalid choice. Please enter 1 (random selection) or 2 (align for maximum diversity).')
         sys.exit(1)
+    if choice == "1":
+        print('Using random selection.')
+    else:
+        print('Using aligned selection.')
     return int(choice)
