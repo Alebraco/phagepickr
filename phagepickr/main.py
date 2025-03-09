@@ -2,14 +2,14 @@
 
 import sys
 
-from .utils.user_interaction import entrez_email, alignment_choice
-from .utils.data_management import read_data
-from .cocktail.dataframe import receptor_df, produce_array, remove_ifmember
-from .cocktail.neighbors import nearest_bacteria, nearest_names, nearest_phages
-from .cocktail.random import random_cocktail
-from .cocktail.alignment import most_diverse_phages
-from .cocktail.phage_seqs import phage_genomes
-from .cocktail.final import indices_to_accn, accession_cocktail, final_cocktail
+from phagepickr.utils.user_interaction import entrez_email, alignment_choice
+from phagepickr.utils.data_management import read_data
+from phagepickr.cocktail.dataframe import receptor_df, produce_array, remove_ifmember
+from phagepickr.cocktail.neighbors import nearest_bacteria, nearest_names, nearest_phages
+from phagepickr.cocktail.random import random_cocktail
+from phagepickr.cocktail.alignment import most_diverse_phages
+from phagepickr.cocktail.phage_seqs import phage_genomes
+from phagepickr.cocktail.final import indices_to_accn, accession_cocktail, final_cocktail
 
 def cli():
     if len(sys.argv) != 4:
