@@ -1,5 +1,7 @@
 import json
 import os
+import importlib.resources
+
 def read_data(file):
   '''
   Reads data from a JSON file.
@@ -14,16 +16,14 @@ def read_data(file):
   base_dir = os.path.dirname(os.path.abspath(__file__))
   # Combine the directory with the file name
   json_path = os.path.join(base_dir, file)
-  # The file must be in the same directory as the script
-  print(f"Loading file at: {json_path}") 
-
+  
   try:
-    with open(file, 'r') as f:
+    with pkg_resources.open_text('phagepickr', file) as f:
         data = json.load(f)
     return data
   # Return None if the file cannot be read or does not exist 
-  except:
-    return None
+  except FileNotFoundError:
+    raise FileNotFoundError(f"File not found: {json_path}")
 
 def store_data(data, file):
   '''Saves data to a JSON file.
