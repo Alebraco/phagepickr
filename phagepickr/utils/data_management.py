@@ -15,6 +15,7 @@ def read_data(file):
   # Combine the directory with the file name
   json_path = os.path.join(base_dir, file)
   # The file must be in the same directory as the script
+  print(f"Loading file at: {json_path}") 
 
   try:
     with open(file, 'r') as f:
