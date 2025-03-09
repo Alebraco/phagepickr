@@ -12,9 +12,6 @@ from phagepickr.cocktail.alignment import most_diverse_phages
 from phagepickr.cocktail.phage_seqs import phage_genomes
 from phagepickr.cocktail.final import indices_to_accn, accession_cocktail, final_cocktail
 
-if hasattr(sys.stdout, 'buffer'):
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, write_through=True)
-
 def cli():
     if len(sys.argv) != 4:
         print('Usage: phagepickr <target_species> <alignment_choice> <entrez_email>')
@@ -47,7 +44,7 @@ def cli():
         candidate_accs = accession_cocktail(diverse_accn, similar_phages)
         product = final_cocktail(candidate_accs, phageinfo)
         
-    print(product, flush=True)
+    print(product)
 
 if __name__ == '__main__':
     cli()
