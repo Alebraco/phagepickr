@@ -12,7 +12,7 @@ from phagepickr.cocktail.final import indices_to_accn, accession_cocktail, final
 
 def cli():
     if len(sys.argv) != 4:
-        print('Usage: python main.py <target_species> <alignment_choice> <entrez_email>')
+        print('Usage: phagepickr <target_species> <alignment_choice> <entrez_email>')
         sys.exit(1)
     
     target = sys.argv[1]
