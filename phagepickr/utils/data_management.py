@@ -1,6 +1,7 @@
+import importlib.resources as pkg_resources
 import json
 import os
-import importlib.resources
+
 
 def read_data(file):
   '''
@@ -16,7 +17,7 @@ def read_data(file):
   base_dir = os.path.dirname(os.path.abspath(__file__))
   # Combine the directory with the file name
   json_path = os.path.join(base_dir, file)
-  
+
   try:
     with pkg_resources.open_text('phagepickr', file) as f:
         data = json.load(f)
