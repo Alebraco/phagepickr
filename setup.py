@@ -5,7 +5,7 @@ setup(
     description="A tool to design evolution-proof phage cocktails against pathogenic bacteria",
     author="Alessandro Oneto",
     author_email="alekey039@hotmail.com",
-    packages=find_packages(),  # Find modules in the directory
+    packages=find_packages(include=["phagepickr", "phagepickr.*"]),
     package_data={
         "phagepickr": ["receptor_data.json", "phagedicts.json"]
     },
