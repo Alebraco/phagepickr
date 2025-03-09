@@ -1,5 +1,5 @@
 import json
-
+import os
 def read_data(file):
   '''
   Reads data from a JSON file.
@@ -10,6 +10,12 @@ def read_data(file):
     dict or None: A dictionary with data read from
       the file or None if the file cannot be read.
   '''
+  # Get the directory of the script being run 
+  base_dir = os.path.dirname(os.path.abspath(__file__))
+  # Combine the directory with the file name
+  json_path = os.path.join(base_dir, file)
+  # The file must be in the same directory as the script
+
   try:
     with open(file, 'r') as f:
         data = json.load(f)
@@ -28,6 +34,7 @@ def store_data(data, file):
       data will be saved.
   
   '''
+
   try:
     with open(file, 'w') as f:
         json.dump(data, f)
