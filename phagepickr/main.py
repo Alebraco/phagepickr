@@ -11,7 +11,7 @@ from cocktail.alignment import most_diverse_phages
 from cocktail.phage_seqs import phage_genomes
 from cocktail.final import indices_to_accn, accession_cocktail, final_cocktail
 
-if __name__ == '__main__':
+def cli():
     if len(sys.argv) != 4:
         print('Usage: python main.py <target_species> <alignment_choice> <entrez_email>')
         sys.exit(1)
@@ -24,15 +24,12 @@ if __name__ == '__main__':
     phageinfo = read_data('phagedicts.json')
     
     df = receptor_df(receptor_data)
-    target = input('Enter the target species:')
 
     target_features = produce_array(target, df)
     target_features, features_data = remove_ifmember(target_features, target, df)
     distances, indices = nearest_bacteria(target_features, features_data, neighbors = 3)
     similar = nearest_names(indices, df)
     similar_phages = nearest_phages(similar, phageinfo)
-    
-    choice = alignment_choice()
     
     if choice == 1:
         random_accs = random_cocktail(similar_phages)
@@ -46,3 +43,6 @@ if __name__ == '__main__':
         product = final_cocktail(candidate_accs, phageinfo)
         
     print(product)
+    
+if __name__ == '__main__':
+    cli()
