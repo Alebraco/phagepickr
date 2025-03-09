@@ -8,6 +8,7 @@ def phage_genomes(similar_phages):
         
         filename_ls = []
         for bact, phages in similar_phages.items():
+            print(f"Processing {bact}: {phages}")
             if len(phages) > 2:
                 filename = f'{"_".join(bact.split())}_phages.fasta'
                 filename_ls.append(filename)
