@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import pandas as pd
-from data_collection.receptors_function import receptors
+from phagepickr.data_collection.receptors_function import receptors
 
 def receptor_df(receptor_data):
     labels = sorted(set(receptor_data.keys())) 
