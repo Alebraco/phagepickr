@@ -18,7 +18,7 @@ def phage_genomes(similar_phages):
                     seqs.append(record)
                 handle.close()
             
-            with open(filename, 'w') as file: 
-                SeqIO.write(seqs, file, 'fasta')
+                with open(filename, 'w') as file: 
+                    SeqIO.write(seqs, file, 'fasta')
             
         return filename_ls
