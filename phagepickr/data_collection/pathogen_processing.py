@@ -1,5 +1,5 @@
-from utils.data_management import read_data, store_data
-from .receptors_function import receptors
+from phagepickr.utils.data_management import read_data, store_data
+from phagepickr.data_collection.receptors_function import receptors
 
 def read_pathogens(file):
   '''Create a list of unique pathogenic species from a text file.

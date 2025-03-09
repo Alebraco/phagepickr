@@ -1,7 +1,7 @@
-from bacteria.pathogen_list import retrieve_pathogenic_list
-from bacteria.phage_host import phageid_to_host
-from bacteria.select_hosts import select_hosts
-from data_collection.protein_ids import retrieve_ids
+from phagepickr.bacteria.pathogen_list import retrieve_pathogenic_list
+from phagepickr.bacteria.phage_host import phageid_to_host
+from phagepickr.bacteria.select_hosts import select_hosts
+from phagepickr.data_collection.protein_ids import retrieve_ids
 
 clean_patlist = retrieve_pathogenic_list()
 
