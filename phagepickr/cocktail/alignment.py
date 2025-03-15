@@ -31,9 +31,10 @@ def align_sequences(input_file, output_file):
 def distance_matrix(input_file):
     calculator = DistanceCalculator('identity')
     alignment = AlignIO.read(input_file, 'fasta')
+    names = [record.id for record in alignment]
     matrix = calculator.get_distance(alignment)
     
-    return matrix
+    return matrix, names 
 
 def top_distances(matrix, k = 1):
     array = np.array(matrix)
@@ -53,14 +54,16 @@ def top_distances(matrix, k = 1):
 def most_diverse_phages(filename_ls, k = 1): #time consuming, genome alignment
     sorted_distances_list = []
     phage_matrix_list = []
+    phage_names_list = []
     
     for file in filename_ls:
         aligned_file = f'aligned{file}'
         align_sequences(file, aligned_file)
-        phage_matrix = distance_matrix(aligned_file)
-        sorted_distances = top_distances(phage_matrix, k)
+        matrix, names = distance_matrix(aligned_file)
+        sorted_distances = top_distances(matrix, k)
         
-        phage_matrix_list.append(phage_matrix)
+        phage_matrix_list.append(matrix)
+        phage_names_list.append(names)
         sorted_distances_list.append(sorted_distances)
         
-    return sorted_distances_list, phage_matrix_list 
+    return sorted_distances_list, phage_matrix_list, phage_names_list
