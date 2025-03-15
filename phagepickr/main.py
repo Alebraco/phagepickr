@@ -40,8 +40,8 @@ def cli():
         
     else:
         filename_ls = phage_genomes(similar_phages)
-        phage_distances, phage_matrix = most_diverse_phages(filename_ls, k = 1)
-        diverse_accn = indices_to_accn(phage_distances, phage_matrix)
+        distances_list, matrix_list, names_list = most_diverse_phages(filename_ls, k = 1)
+        diverse_accn = indices_to_accn(distances_list, matrix_list, names_list)
         candidate_accs = accession_cocktail(diverse_accn, similar_phages)
         product = final_cocktail(candidate_accs, phageinfo)
         
