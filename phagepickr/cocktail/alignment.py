@@ -14,18 +14,18 @@ def align_sequences(input_file, output_file):
     
     if platform.system() == 'Windows':
        mafft_command = f'wsl.exe mafft --auto --quiet {input_file} > {output_file}' 
-       result = subprocess.run(mafft_command, shell=True, capture_output = True)
-       
+       result = subprocess.run(mafft_command, shell=True, capture_output = True)   
     else:
         mafft_command = f'mafft --auto --quiet {input_file} > {output_file}'
         
         result = subprocess.run(mafft_command, shell=True, capture_output = True)
         
-    if result.returncode == 9:
+    if result.returncode == 0:
         print('- Alignment performed successfully')
     else: 
         print('Error generating alignment')
         print(mafft_command)
+        print(result.stdout)
         print(result.stderr)
 
 def distance_matrix(input_file):
