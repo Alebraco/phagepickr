@@ -25,7 +25,6 @@ def align_sequences(input_file, output_file):
     else: 
         print('Error generating alignment')
         print(mafft_command)
-        print(result.stdout)
         print(result.stderr)
 
 def distance_matrix(input_file):
