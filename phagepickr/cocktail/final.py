@@ -3,13 +3,13 @@
 
 def indices_to_accn(sorted_distances_list, phage_matrix_list, phage_names_list):
     diverse_accn = []
-    for sorted_distances, phage_matrix in zip(sorted_distances_list, phage_matrix_list, phage_names_list):
+    for sorted_distances, phage_matrix, phage_names in zip(sorted_distances_list, phage_matrix_list, phage_names_list):
         unique_indices = set()
         
         for _, i, j in sorted_distances: 
             unique_indices.update([i, j])
             
-        diverse_accn.extend(names[ind] for ind in unique_indices)
+        diverse_accn.extend(phage_names[ind] for ind in unique_indices)
     return diverse_accn
 
 def accession_cocktail(diverse_accn, similar_phages):
