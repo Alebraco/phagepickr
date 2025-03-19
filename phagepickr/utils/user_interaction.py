@@ -21,3 +21,7 @@ def alignment_choice(choice):
     else:
         print('Using aligned selection.')
     return int(choice)
+
+def user_api(key):
+    '''Let user provide their NCBI API key.'''
+    print(f'Using provided  API key: {key}')

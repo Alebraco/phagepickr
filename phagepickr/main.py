@@ -3,7 +3,7 @@
 
 import sys
 import os
-from phagepickr.utils.user_interaction import entrez_email, alignment_choice
+from phagepickr.utils.user_interaction import entrez_email, alignment_choice, api_key
 from phagepickr.utils.data_management import read_data
 from phagepickr.cocktail.dataframe import receptor_df, produce_array, remove_ifmember
 from phagepickr.cocktail.neighbors import nearest_bacteria, nearest_names, nearest_phages
@@ -21,7 +21,7 @@ def cli():
     print(f'Target species: {target}')
     choice = alignment_choice(sys.argv[2])
     entrez_email(sys.argv[3])
-   
+
     receptor_data = read_data('receptor_data.json')
     phageinfo = read_data('phagedicts.json')
     
