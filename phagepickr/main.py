@@ -3,7 +3,6 @@
 
 import sys
 import os
-import io
 from phagepickr.utils.user_interaction import entrez_email, alignment_choice
 from phagepickr.utils.data_management import read_data
 from phagepickr.cocktail.dataframe import receptor_df, produce_array, remove_ifmember
