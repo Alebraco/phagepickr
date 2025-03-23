@@ -25,4 +25,4 @@ def alignment_choice(choice):
 def api_key(key):
     '''Let user provide their NCBI API key.'''
     Entrez.api_key = key
-    print(f'Using provided  API key: {key}')
+    print(f'Using provided API key: {key}')
