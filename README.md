@@ -1,17 +1,17 @@
-# phagetool: phage cocktail design based on bacterial receptor configurations  
+# phagepickr: phage cocktail design based on bacterial receptor configurations  
 
 ## Introduction
-'' is a tool aimed at the design of evolution-proof bacteriophage cocktails targeting multiple receptors proteins in bacteria. The workflow used to generate the database of protein receptors and phage-host information is available in 'submodule'.
+`phagepickr` is a tool aimed at the design of evolution-proof bacteriophage cocktails targeting multiple receptors proteins in bacteria. The workflow used to generate the database of protein receptors and phage-host information is available in `bacteria`.
 
 ## Installation
 ### MacOS / Linux
 1. Create the new environment:
 ```
-mamba env create -f phagetool.yml
+conda env create -f phagetool.yml
 ```
 2. Activate the environment:
 ```
-mamba activate phagetool
+conda activate phagetool
 ```
 
 ### Windows
