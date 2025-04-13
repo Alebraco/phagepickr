@@ -1,44 +1,46 @@
 from Bio import Entrez
 import time
 
-def retrieve_ids(query, db, maxrec = 50):
-  """Fetch IDs from an NCBI database.
+def retrieve_ids(query, db, maxrec=8000):
+    """Fetch IDs from an NCBI database.
 
-  Args:
-    maxrec (int, optional): The number of records to retrieve for each batch
-    db (str): Database from which records are retrieved
-    query (str): A string used to query the database. The format
-      should match the specific requirements of the database.
+    Args:
+        query (str): A string used to query the database.
+        db (str): Database from which records are retrieved.
+        maxrec (int, optional): The number of records to retrieve per batch.
 
-  Returns:
-    list: A list of IDs retrieved
-  """
-  
-  ids = [] # Initialize IDs list
-  start = 0 # Start index for batch retrieval
-  sleep_time = 1 # Initial sleep time for retrying after an error
+    Returns:
+        list: A list of IDs retrieved.
+    """
+    ids = []  # Initialize IDs list
+    start = 0  # Start index for batch retrieval
+    sleep_time = 1  # Initial sleep time for retrying after an error
 
-  while(True):
     try:
-      # Requesting batch of IDs from the database
-      handle = Entrez.esearch(db = db, retmax = maxrec, retstart = start, term = query)
-      rec = Entrez.read(handle)
-      handle.close()
-      sleep_time = 1 # Reset sleep time after successful request
-
+        # Get the total number of records
+        with Entrez.esearch(db=db, term=query, retmax=1) as handle:
+            rec = Entrez.read(handle)
+            total_records = int(rec.get("Count", 0))
+            print(total_records)
     except Exception as error:
-      # Retry mechanism in case of error
-      print('Search failed, trying again in', sleep_time,'seconds:', error)
-      time.sleep(sleep_time)
-      sleep_time *= 2
-      continue
+        print("Initial search failed:", error)
+        return []
 
-    # Break the loop if no more IDs are found
-    if len(rec['IdList']) == 0:
-      break
+    while start < total_records:
+        try:
+            with Entrez.esearch(db=db, term=query, retmax=maxrec, retstart=start) as handle:
+                rec = Entrez.read(handle)
+                print('retrieving first',start,'records')
+            if not rec["IdList"]:  # Break the loop if no more IDs are found
+                break
 
-    # Update start index for next batch and extend IDs list
-    start += maxrec
-    ids += rec['IdList']
-    
-  return ids
+            ids.extend(rec["IdList"])
+            start += maxrec
+            sleep_time = 1
+
+        except Exception as error:
+            print(f"Search failed, retrying in {sleep_time} seconds:", error)
+            time.sleep(sleep_time)
+            sleep_time = min(sleep_time * 2, 60)
+    print(f'Retrieved {len(ids)} IDs')
+    return ids
