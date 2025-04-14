@@ -1,7 +1,7 @@
 from phagepickr.data_collection.protein_ids import retrieve_ids
 from phagepickr.data_collection.protein_names import retrieve_titles, fix_unnamed
 
-def receptors(query, recs=50):
+def receptors(query, recs=8000):
     """Retrieve receptor titles for a specific pathogenic host using
     previously defined functions.
 
