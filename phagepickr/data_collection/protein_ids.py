@@ -21,7 +21,6 @@ def retrieve_ids(query, db, maxrec=8000):
         with Entrez.esearch(db=db, term=query, retmax=1) as handle:
             rec = Entrez.read(handle)
             total_records = int(rec.get("Count", 0))
-            print(total_records)
     except Exception as error:
         print("Initial search failed:", error)
         return []
@@ -30,7 +29,6 @@ def retrieve_ids(query, db, maxrec=8000):
         try:
             with Entrez.esearch(db=db, term=query, retmax=maxrec, retstart=start) as handle:
                 rec = Entrez.read(handle)
-                print('retrieving first',start,'records')
             if not rec["IdList"]:  # Break the loop if no more IDs are found
                 break
 
@@ -42,5 +40,4 @@ def retrieve_ids(query, db, maxrec=8000):
             print(f"Search failed, retrying in {sleep_time} seconds:", error)
             time.sleep(sleep_time)
             sleep_time = min(sleep_time * 2, 60)
-    print(f'Retrieved {len(ids)} IDs')
     return ids

@@ -16,7 +16,7 @@ def receptors(query, recs=8000):
     try:
         print(f"Querying database with query: {query}")
         ids = retrieve_ids(query, db='ipg', maxrec=recs)
-        print(f"Retrieved IDs")
+        print(f"Retrieved {len(ids)} IDs")
         if not ids:
             print("No IDs retrieved.")
             return []

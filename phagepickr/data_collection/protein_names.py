@@ -1,7 +1,7 @@
 from Bio import Entrez
 import time
 
-def retrieve_titles(ids, db = 'ipg', maxrec = 50):
+def retrieve_titles(ids, db = 'ipg', maxrec = 8000):
   """Retrieve protein names and accession numbers for given IDs from 'Identical 
     Protein Groups' NCBI database.
 
@@ -11,9 +11,8 @@ def retrieve_titles(ids, db = 'ipg', maxrec = 50):
     db (str, optional): Database from which records are retrieved. 
 
   Returns:
-    tuple: A tuple containing two lists. The first list contains the protein titles
-      for each ID in the given list. The second list contains the accession numbers
-      for each ID.
+    list: The first list contains the protein titles
+      for each ID in the given list. 
   """
   
   titles = [] # Initialize titles list
@@ -27,7 +26,7 @@ def retrieve_titles(ids, db = 'ipg', maxrec = 50):
     while not retrieval:
       try:
         # Retrieve batch of summaries from the database
-        handle = Entrez.esummary(db = db, id = idsfrag, retmax = maxrec)
+        handle = Entrez.esummary(db = db, id = idsfrag)
         ipgsum = Entrez.read(handle)
         handle.close()
         retrieval = True
