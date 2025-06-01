@@ -50,7 +50,7 @@ def top_distances(matrix, k = 1):
                 heapq.heappushpop(minheap, (d, i, j))
     return minheap
 
-def most_diverse_phages(filename_ls, k = 1): #time consuming, genome alignment
+def most_diverse_phages(filename_ls, k): #time consuming, genome alignment
     sorted_distances_list = []
     phage_matrix_list = []
     phage_names_list = []

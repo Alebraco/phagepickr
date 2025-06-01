@@ -1,4 +1,4 @@
-name: phagetool
+name: phagepickr
 channels:
   - nanoporetech
   - anaconda
