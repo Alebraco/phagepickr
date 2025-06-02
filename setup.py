@@ -2,6 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="phagepickr",
+    version="1.0",
     description="A tool to design evolution-proof phage cocktails against pathogenic bacteria",
     author="Alessandro Oneto",
     author_email="asoneto@ncsu.edu",

@@ -1,9 +1,8 @@
 #!/usr/bin/env python -u
 # -*- coding: utf-8 -*-
 
-import sys
 import argparse
-from phagepickr.utils.user_interaction import entrez_email, alignment_choice, api_key
+from phagepickr.utils.user_interaction import entrez_email, api_key
 from phagepickr.utils.data_management import read_data
 from phagepickr.cocktail.dataframe import receptor_df, produce_array, remove_ifmember
 from phagepickr.cocktail.neighbors import nearest_bacteria, nearest_names, nearest_phages
@@ -14,25 +13,28 @@ from phagepickr.cocktail.final import indices_to_accn, accession_cocktail, final
 from phagepickr.utils.output import print_phage_cocktail
 
 def cli():
-    parser = argparse.ArgumentParser(description="PhagePickr: Design of evolution-proof bacteriophage cocktails")
-    parser.add_argument("target_species", help="Name of the target species (e.g., \"Escherichia coli\")", required=True)
-    parser.add_argument("alignment_choice", choices=["diverse", "random"], default="diverse",
-                        help="Choose 'diverse' for maximum diversity or 'random' for random selection of phages (defult=diverse)")
-    parser.add_argument("entrez_email", help="Your email (required for NCBI Entrez)", required=True)
-    parser.add_argument("--neighbors", "-n", type=int, default=3, help="Number of nearest neighbors to consider (default=3)")
-    parser.add_argument("--k_value", type=int, default=1, help="Number of phage pairs that maximize genetic diversity (default=1)")
-    parser.add_argument("--include-known", "-i", action='store_true', help="Exclude known infecting phages in the selection")
-    parser.add_argument("--api_key", help="NCBI API key (optional)")
+    parser = argparse.ArgumentParser(description="PhagePickr: Design of evolution-proof bacteriophage cocktails", formatter_class=argparse.RawTextHelpFormatter)
+    
+    required = parser.add_argument_group('required arguments')
+    required.add_argument("--target", "-t", metavar="<SPECIES>", required=True, help="Name of the target species (e.g., \"Escherichia coli\")")
+    required.add_argument("--email", "-e", metavar="<EMAIL>", required=True, help="Your email (required for NCBI Entrez)")
 
+    optional = parser.add_argument_group('optional arguments')
+    optional.add_argument("--strategy", "-s", choices=["diverse", "random"], default="diverse",
+                        help="Choose 'diverse' for maximum diversity or 'random' for random selection of phages (default=diverse)")
+    optional.add_argument("--neighbors", metavar="n", type=int, default=3, help="Number of nearest neighbors to consider (default=3)")
+    optional.add_argument("--k_value", metavar="k", type=int, default=1, help="Number of phage pairs that maximize genetic diversity (default=1)")
+    optional.add_argument("--explore_only", "-i", action='store_true', help="Exclude known infecting phages in the selection (potential infectors only).")
+    optional.add_argument("--api_key", metavar="<KEY>", help="NCBI API key")
 
     args = parser.parse_args()
 
-    target = args.target_species
+    target = args.target
     print(f'Target species: {target}')
-    choice = args.alignment_choice
+    choice = args.strategy
     entrez_email(args.entrez_email)
-    include_known = args.include_known
-    if include_known:
+    explore = args.explore_only
+    if explore:
         print('Including known infecting phages in the selection.')
     neighbors = args.neighbors
 
@@ -46,7 +48,7 @@ def cli():
     df = receptor_df(receptor_data)
     
     target_features = produce_array(target, df)
-    target_features, features_data = remove_ifmember(target_features, target, df, include_known)
+    target_features, features_data = remove_ifmember(target_features, target, df, explore)
     _, indices = nearest_bacteria(target_features, features_data, neighbors)
     similar = nearest_names(indices, df)
     similar_phages = nearest_phages(similar, phageinfo)
