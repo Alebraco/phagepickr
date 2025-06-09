@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import argparse
+from glob import glob
 from phagepickr.utils.user_interaction import entrez_email, api_key
 from phagepickr.utils.data_management import read_data
 from phagepickr.cocktail.dataframe import receptor_df, produce_array, remove_ifmember
@@ -64,9 +65,12 @@ def cli():
         diverse_accn = indices_to_accn(distances_list, matrix_list, names_list)
         candidate_accs = accession_cocktail(diverse_accn, similar_phages)
         product = final_cocktail(candidate_accs, phageinfo)
-        
+
     print('Final Phage Cocktail:')
     print_phage_cocktail(product, phageinfo, target)
+
+    for fasta_file in glob('*.fasta'):
+        os.remove(fasta_file)
 
 if __name__ == '__main__':
     cli()
