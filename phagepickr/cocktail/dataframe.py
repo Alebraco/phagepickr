@@ -32,15 +32,10 @@ def produce_array(target, df):
         target_features = target_conf.reshape(1, -1)
         return target_features 
     
-def remove_ifmember(target_features, target, df):
-
+def remove_ifmember(target_features, target, df, explore):
     if target_features is None:
-        target_row = df.loc[target]
-        target_features = target_row.values.reshape(1, -1)
-        features_data = df.drop(target, axis = 0).values
-    else:
-        features_data = df.values
-        
-    return target_features, features_data   
+        target_features = df.loc[target].values.reshape(1, -1)
+    features_data = df.drop(target, axis=0).values if explore else df.values
+    return target_features, features_data
         
     
