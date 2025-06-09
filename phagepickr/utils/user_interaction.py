@@ -11,17 +11,6 @@ def entrez_email(user_email):
   print(f'Using provided Entrez email: {user_email}')
   Entrez.email = user_email
 
-def alignment_choice(choice):
-    '''Prompt the user to choose between random and aligned phage selection.'''
-    if choice not in ["1", "2"]:
-        print('Invalid choice. Please enter 1 (random selection) or 2 (align for maximum diversity).')
-        sys.exit(1)
-    if choice == "1":
-        print('Using random selection.')
-    else:
-        print('Using aligned selection.')
-    return int(choice)
-
 def api_key(key):
     '''Let user provide their NCBI API key.'''
     Entrez.api_key = key
