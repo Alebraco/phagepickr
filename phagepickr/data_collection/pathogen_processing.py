@@ -25,12 +25,12 @@ def query_pathogens(upat, maxrec, output_file):
     maxrec (int): Maximum number of records to retrieve for each batch.
     output_file (str, optional): File path where the data will be saved
   Returns:
-    dict: A dictionary of the collected data with 3 keys (titles, sequences,
+    dict: A dictionary of the collected data with 2 keys (titles
      and species).
   '''
   
   # Initialize a data dictionary to store the results
-  data = {'titles': [], 'sequences': [], 'species': []}
+  data = {'titles': [], 'species': []}
   
   # Read existing data from the output file, if any
   # Useful in case of interruption
@@ -54,10 +54,9 @@ def query_pathogens(upat, maxrec, output_file):
     
     query = pathogen + '[ORGN] AND receptor[All fields]'
     # Retrieve protein names and sequences for current pathogen
-    titles, aaseqs = receptors(query, maxrec)
+    titles = receptors(query, maxrec)
     # Store the data in the dictionary
     data['titles'].extend(titles)
-    data['sequences'].extend(aaseqs)
     data['species'].extend([pathogen]*len(titles))
     # Lists should be of the same length
 
