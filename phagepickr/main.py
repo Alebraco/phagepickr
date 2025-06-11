@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import argparse
+import os
 from glob import glob
 from phagepickr.utils.user_interaction import entrez_email, api_key
 from phagepickr.utils.data_management import read_data
