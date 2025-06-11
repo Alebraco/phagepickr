@@ -33,7 +33,7 @@ def cli():
     target = args.target
     print(f'Target species: {target}')
     choice = args.strategy
-    entrez_email(args.entrez_email)
+    entrez_email(args.email)
     explore = args.explore_only
     if explore:
         print('Including known infecting phages in the selection.')
