@@ -42,7 +42,6 @@ def cli():
     if args.api_key:
         key = args.api_key
         api_key(key)
-        print(f'Using NCBI API key: {key}')
 
     receptor_data = read_data('receptor_data.json')
     phageinfo = read_data('phagedicts.json')
