@@ -69,8 +69,5 @@ def cli():
     print('Final Phage Cocktail:')
     print_phage_cocktail(product, phageinfo, target)
 
-    for fasta_file in glob('*.fasta'):
-        os.remove(fasta_file)
-
 if __name__ == '__main__':
     cli()
