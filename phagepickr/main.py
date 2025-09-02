@@ -37,6 +37,8 @@ def cli():
     entrez_email(args.email)
     explore = args.explore_only
     if explore:
+        print('Excluding known infecting phages (explore mode).')
+    else:
         print('Including known infecting phages in the selection.')
     neighbors = args.neighbors
 
