@@ -52,6 +52,9 @@ def cli():
     
     target_features = produce_array(target, df)
     target_features, features_data = remove_ifmember(target_features, target, df, explore)
+    
+    print(f"Target included in neighbor search? {target in features_data.index}")
+
     _, indices = nearest_bacteria(target_features, features_data.values, neighbors)
     similar = nearest_names(indices, df)
     similar_phages = nearest_phages(similar, phageinfo)

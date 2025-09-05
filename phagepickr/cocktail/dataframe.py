@@ -37,5 +37,3 @@ def remove_ifmember(target_features, target, df, explore):
         target_features = df.loc[target].values.reshape(1, -1)
     features_data = df.drop(target, axis=0) if explore else df
     return target_features, features_data
-        
-    
