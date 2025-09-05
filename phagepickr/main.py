@@ -54,7 +54,7 @@ def cli():
     target_features, features_data = remove_ifmember(target_features, target, df, explore)
     
     _, indices = nearest_bacteria(target_features, features_data.values, neighbors)
-    similar = nearest_names(indices, df)
+    similar = nearest_names(indices, features_data)
     similar_phages = nearest_phages(similar, phageinfo)
     
     if choice == "random":
