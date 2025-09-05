@@ -35,5 +35,11 @@ def produce_array(target, df):
 def remove_ifmember(target_features, target, df, explore):
     if target_features is None:
         target_features = df.loc[target].values.reshape(1, -1)
+
+    print("Before dropping target:", list(df.index))
+
     features_data = df.drop(target, axis=0) if explore else df
+
+    print("After dropping target:", list(features_data.index))
+    print("Target still present?", target in features_data.index)
     return target_features, features_data
