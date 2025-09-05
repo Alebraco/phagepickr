@@ -35,7 +35,7 @@ def produce_array(target, df):
 def remove_ifmember(target_features, target, df, explore):
     if target_features is None:
         target_features = df.loc[target].values.reshape(1, -1)
-    features_data = df.drop(target, axis=0).values if explore else df.values
+    features_data = df.drop(target, axis=0) if explore else df
     return target_features, features_data
         
     

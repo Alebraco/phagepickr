@@ -52,7 +52,7 @@ def cli():
     
     target_features = produce_array(target, df)
     target_features, features_data = remove_ifmember(target_features, target, df, explore)
-    _, indices = nearest_bacteria(target_features, features_data, neighbors)
+    _, indices = nearest_bacteria(target_features, features_data.values, neighbors)
     similar = nearest_names(indices, df)
     similar_phages = nearest_phages(similar, phageinfo)
     

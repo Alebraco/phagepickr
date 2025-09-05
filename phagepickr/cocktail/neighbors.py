@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 from sklearn.neighbors import NearestNeighbors
 
-def nearest_bacteria(target_features, features_data, neighbors):
+def nearest_bacteria(target_features, features_data_values, neighbors):
     nn_model = NearestNeighbors(n_neighbors = neighbors, metric = 'hamming')
-    nn_model.fit(features_data)
+    nn_model.fit(features_data_values)
 
     distances, indices = nn_model.kneighbors(target_features)
 
