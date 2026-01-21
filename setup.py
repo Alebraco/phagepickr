@@ -12,24 +12,14 @@ setup(
     },
     include_package_data=True,
     entry_points={
-        "console_scripts": [
-            "phagepickr=phagepickr.main:cli", 
-        ],
+        "console_scripts": ["phagepickr=phagepickr.main:cli"]
     },
     install_requires=[
     "biopython",
-    "Bottleneck",
-    "joblib",
-    "numexpr",
     "numpy",
     "pandas",
-    "python-dateutil",
-    "pytz",
     "scikit-learn",
     "scipy",
-    "six",
-    "threadpoolctl",
-    "tzdata"
     ],
     python_requires=">=3.11",  
 )

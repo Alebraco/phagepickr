@@ -20,17 +20,10 @@ requirements:
     run:
         - python >=3.11
         - biopython
-        - mafft
-        - joblib
         - numpy
         - pandas
-        - python-dateutil
-        - pytz
         - scikit-learn
         - scipy
-        - six
-        - threadpoolctl
-        - tzdata
 
 about: 
     home: "https://github.com/Alebraco/phagepickr"
