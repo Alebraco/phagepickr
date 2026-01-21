@@ -13,9 +13,9 @@ conda env create -f environment.yml
 ```
 conda activate phagepickr
 ```
-3. Install MAFFT (not available on conda for macOS Apple Silicon):
+3. Install MAFFT (brew is required on macOS Apple Silicon where conda MAFFT is unavailable):
 ```
-conda install -c bioconda mafft
+conda install -c bioconda mafft  # macOS Intel/Linux
 ```
 ```
 brew install mafft  # macOS Apple Silicon (arm64)
