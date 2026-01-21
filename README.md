@@ -7,11 +7,18 @@
 ### MacOS / Linux
 1. Create the new environment:
 ```
-conda env create -f phagetool.yml
+conda env create -f environment.yml
 ```
 2. Activate the environment:
 ```
-conda activate phagetool
+conda activate phagepickr
+```
+3. Install MAFFT (not available on conda for macOS Apple Silicon):
+```
+conda install -c bioconda mafft
+```
+```
+brew install mafft  # macOS Apple Silicon (arm64)
 ```
 
 ### Windows
