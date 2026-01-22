@@ -54,7 +54,7 @@ phagepickr -t "Pseudomonas aeruginosa" -e <EMAIL> --explore_only
 ```bash
 phagepickr -t "Klebsiella pneumoniae" -e <EMAIL>--neighbors 5 -k 2
 ```
-> The built-in datasets for bacterial receptors and phage-host information were generated using the workflow available in [bacteria](bacteria/).
+> The built-in datasets for bacterial receptors and phage-host information were generated using the workflow available in [bacteria](phagepickr/bacteria/).
 
 ## Dependencies
 
