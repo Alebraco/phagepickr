@@ -24,10 +24,10 @@ def cli():
     optional = parser.add_argument_group('optional arguments')
     optional.add_argument("--strategy", "-s", choices=["diverse", "random"], default="diverse",
                         help="Choose 'diverse' for maximum diversity or 'random' for random selection of phages (default=diverse)")
-    optional.add_argument("--neighbors", metavar="n", type=int, default=3, help="Number of nearest neighbors to consider (default=3)")
-    optional.add_argument("--k_value", metavar="k", type=int, default=1, help="Number of phage pairs that maximize genetic diversity (default=1)")
+    optional.add_argument("--neighbors", "-n", metavar="n", type=int, default=3, help="Number of nearest neighbors to consider (default=3)")
+    optional.add_argument("--k_value", "-k", metavar="k", type=int, default=1, help="Number of phage pairs that maximize genetic diversity (default=1)")
     optional.add_argument("--explore_only", "-i", action='store_true', help="Exclude known infecting phages in the selection (potential infectors only).")
-    optional.add_argument("--api_key", metavar="<KEY>", help="NCBI API key")
+    optional.add_argument("--api_key", "-a", metavar="<KEY>", help="NCBI API key")
 
     args = parser.parse_args()
 
