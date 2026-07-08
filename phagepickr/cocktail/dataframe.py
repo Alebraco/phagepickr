@@ -27,10 +27,14 @@ def produce_array(target, df):
         return None
     else:
         targetdict = {}
-        targetdict[target] = receptors(target)
-        target_conf = df.columns.isin(targetdict.get(target, False)).astype(int)
+        targetdict[target] = receptors(f"{target}[ORGN] AND receptor[All fields]")
+        titles = targetdict.get(target) or []
+        for protein in dict.fromkeys(titles):
+            if protein not in df.columns:
+                df[protein] = 0
+        target_conf = df.columns.isin(titles).astype(int)
         target_features = target_conf.reshape(1, -1)
-        return target_features 
+        return target_features
     
 def remove_ifmember(target_features, target, df, explore):
     if target_features is None:
