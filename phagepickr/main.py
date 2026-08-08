@@ -12,6 +12,7 @@ from phagepickr.cocktail.random import random_cocktail
 from phagepickr.cocktail.alignment import most_diverse_phages
 from phagepickr.cocktail.phage_seqs import phage_genomes
 from phagepickr.cocktail.final import indices_to_accn, accession_cocktail, final_cocktail
+from phagepickr.cocktail.lifestyle import lifestyle_calls, pool_accessions, filter_temperate
 from phagepickr.utils.output import print_phage_cocktail
 
 def cli():
@@ -27,7 +28,10 @@ def cli():
     optional.add_argument("--neighbors", "-n", metavar="n", type=int, default=3, help="Number of nearest neighbors to consider (default=3)")
     optional.add_argument("--k_value", "-k", metavar="k", type=int, default=1, help="Number of phage pairs that maximize genetic diversity (default=1)")
     optional.add_argument("--explore_only", "-i", action='store_true', help="Exclude known infecting phages in the selection (potential infectors only).")
+    optional.add_argument("--threads", "-T", metavar="N", type=int, default=1, help="Number of threads passed to MAFFT for the alignment step. -1 uses all available cores (default=1)")
     optional.add_argument("--api_key", "-a", metavar="<KEY>", help="NCBI API key")
+    optional.add_argument("--lifestyle", "-l", choices=["annotate", "exclude"],
+                        help="Predict phage lifestyle with BACPHLIP: 'annotate' scores the selected phages,\n'exclude' scores the whole pool and discards temperate phages before selection.\nRequires the optional environment installation (environment-bacphlip.yml).")
 
     args = parser.parse_args()
 
@@ -56,21 +60,35 @@ def cli():
     _, indices = nearest_bacteria(target_features, features_data.values, neighbors)
     similar = nearest_names(indices, features_data)
     similar_phages = nearest_phages(similar, phageinfo)
-    
+
+    calls = None
+    if args.lifestyle == 'exclude':
+        calls = lifestyle_calls(pool_accessions(similar_phages))
+        if not calls:
+            print('Cannot exclude temperate phages without a lifestyle prediction.')
+            return
+        similar_phages = filter_temperate(similar_phages, calls)
+        if not similar_phages:
+            print('No lytic phages available for the selection.')
+            return
+
     if choice == "random":
-        random_accs = random_cocktail(similar_phages)
-        product = final_cocktail(random_accs, phageinfo)
-        
+        selected_accs = random_cocktail(similar_phages)
+        product = final_cocktail(selected_accs, phageinfo)
+
     elif choice == "diverse":
         k_value = args.k_value if args.k_value else 1
         filename_ls = phage_genomes(similar_phages)
-        distances_list, matrix_list, names_list = most_diverse_phages(filename_ls, k_value)
+        distances_list, matrix_list, names_list = most_diverse_phages(filename_ls, k_value, args.threads)
         diverse_accn = indices_to_accn(distances_list, matrix_list, names_list)
-        candidate_accs = accession_cocktail(diverse_accn, similar_phages)
-        product = final_cocktail(candidate_accs, phageinfo)
+        selected_accs = accession_cocktail(diverse_accn, similar_phages)
+        product = final_cocktail(selected_accs, phageinfo)
+
+    if args.lifestyle == 'annotate':
+        calls = lifestyle_calls(selected_accs)
 
     print('Final Phage Cocktail:')
-    print_phage_cocktail(product, phageinfo, target)
+    print_phage_cocktail(product, phageinfo, target, calls, selected_accs)
 
 if __name__ == '__main__':
     cli()
