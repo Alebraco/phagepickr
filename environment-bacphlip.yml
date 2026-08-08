@@ -1,0 +1,16 @@
+# Optional environment for the --lifestyle flags.
+name: phagepickr-bacphlip
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.8
+  - hmmer=3.3
+  - numpy=1.19
+  - pandas=1.1
+  - biopython=1.78
+  - joblib=1.0
+  - scikit-learn=0.23.1
+  - pip
+  - pip:
+    - bacphlip==0.9.6
