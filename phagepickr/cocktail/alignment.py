@@ -9,17 +9,17 @@ import platform
 
 
 
-def align_sequences(input_file, output_file):
+def align_sequences(input_file, output_file, threads = 1):
     print(f'Running alignment: {input_file}')
-    
+
     if platform.system() == 'Windows':
-       mafft_command = f'wsl.exe mafft --auto --quiet {input_file} > {output_file}' 
-       result = subprocess.run(mafft_command, shell=True, capture_output = True)   
+       mafft_command = f'wsl.exe mafft --auto --quiet --thread {threads} {input_file} > {output_file}'
+       result = subprocess.run(mafft_command, shell=True, capture_output = True)
     else:
-        mafft_command = f'mafft --auto --quiet {input_file} > {output_file}'
-        
+        mafft_command = f'mafft --auto --quiet --thread {threads} {input_file} > {output_file}'
+
         result = subprocess.run(mafft_command, shell=True, capture_output = True)
-        
+
     if result.returncode == 0:
         print('- Alignment performed successfully')
     else: 
@@ -50,14 +50,14 @@ def top_distances(matrix, k = 1):
                 heapq.heappushpop(minheap, (d, i, j))
     return minheap
 
-def most_diverse_phages(filename_ls, k): #time consuming, genome alignment
+def most_diverse_phages(filename_ls, k, threads = 1): #time consuming, genome alignment
     sorted_distances_list = []
     phage_matrix_list = []
     phage_names_list = []
-    
+
     for file in filename_ls:
         aligned_file = f'aligned{file}'
-        align_sequences(file, aligned_file)
+        align_sequences(file, aligned_file, threads)
         matrix, names = distance_matrix(aligned_file)
         sorted_distances = top_distances(matrix, k)
         
