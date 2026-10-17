@@ -29,6 +29,7 @@ phagepickr --target <SPECIES> --email <EMAIL> [options]
 | `--email` | `-e` | Yes | Your email address (required for NCBI Entrez access). |
 | `--strategy` | `-s` | No | Selection strategy: `'diverse'` for maximum diversity or `'random'` (default: `diverse`). |
 | `--neighbors` | `-n` | No | Number of nearest neighbors to consider (default: `3`). |
+| `--metric` | `-m` | No | Distance metric used to find the nearest neighbors: `'hamming'`, `'jaccard'` or `'cosine'` (default: `hamming`). |
 | `--k_value` | `-k` | No | Number of most distant phage pairs that maximize diversity per neighbor (default: `1`). |
 | `--explore_only`| `-i` | No | If set, excludes known infecting phages and selects only potential infectors. |
 | `--threads` | `-T` | No | Number of threads passed to MAFFT for the alignment step. `-1` uses all available cores (default: `1`). |

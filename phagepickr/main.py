@@ -26,6 +26,7 @@ def cli():
     optional.add_argument("--strategy", "-s", choices=["diverse", "random"], default="diverse",
                         help="Choose 'diverse' for maximum diversity or 'random' for random selection of phages (default=diverse)")
     optional.add_argument("--neighbors", "-n", metavar="n", type=int, default=3, help="Number of nearest neighbors to consider (default=3)")
+    optional.add_argument("--metric", "-m", choices=["hamming", "jaccard", "cosine"], default="hamming", help="Distance metric used to find the nearest neighbors (default=hamming)")
     optional.add_argument("--k_value", "-k", metavar="k", type=int, default=1, help="Number of phage pairs that maximize genetic diversity (default=1)")
     optional.add_argument("--explore_only", "-i", action='store_true', help="Exclude known infecting phages in the selection (potential infectors only).")
     optional.add_argument("--threads", "-T", metavar="N", type=int, default=1, help="Number of threads passed to MAFFT for the alignment step. -1 uses all available cores (default=1)")
@@ -57,7 +58,7 @@ def cli():
     target_features = produce_array(target, df)
     target_features, features_data = remove_ifmember(target_features, target, df, explore)
     
-    _, indices = nearest_bacteria(target_features, features_data.values, neighbors)
+    _, indices = nearest_bacteria(target_features, features_data.values, neighbors, args.metric)
     similar = nearest_names(indices, features_data)
     similar_phages = nearest_phages(similar, phageinfo)
 
