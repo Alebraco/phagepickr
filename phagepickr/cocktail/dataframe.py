@@ -40,6 +40,10 @@ def remove_ifmember(target_features, target, df, explore):
     if target_features is None:
         target_features = df.loc[target].values.reshape(1, -1)
 
-    features_data = df.drop(target, axis=0) if explore else df
+    if explore and target not in df.index:
+        print(f'- {target} is absent from the built-in receptor data. '
+              '--explore_only has no effect (no known infecting phages to exclude)')
+
+    features_data = df.drop(target, axis=0) if explore and target in df.index else df
 
     return target_features, features_data

@@ -1,5 +1,5 @@
 from phagepickr.data_collection.protein_ids import retrieve_ids
-from phagepickr.data_collection.protein_names import retrieve_titles, fix_unnamed
+from phagepickr.data_collection.protein_names import retrieve_titles, drop_unnamed
 
 def receptors(query, recs=8000):
     """Retrieve receptor titles for a specific pathogenic host using
@@ -28,8 +28,8 @@ def receptors(query, recs=8000):
             print("No titles retrieved.")
             return []
 
-        print("Fixing unnamed titles.")
-        titles = fix_unnamed(titles)
+        print("Dropping unnamed titles.")
+        titles = drop_unnamed(titles)
         print(f"Final titles obtained.")
         return titles
 

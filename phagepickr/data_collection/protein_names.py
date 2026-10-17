@@ -46,20 +46,17 @@ def retrieve_titles(ids, db = 'ipg', maxrec = 8000):
   return titles
 
 
-def fix_unnamed(titles):
-  """Replace empty strings ('') with a placeholder ('unnamed protein v#'). 
-    Modifies the list in place.
+uninformative = {'', 'unnamed protein product'}
 
+
+def drop_unnamed(titles):
+  """Discard entries that carry no informative protein name.
+  
   Args:
     titles (list): A list of protein titles
 
   Returns:
-    list: Updated list of protein titles
+    list: The titles that carry an informative name
   """
-  
-  unnamed_count = 1 # Counter for unnamed proteins
-  for index, title in enumerate(titles):
-    if title == '':
-      titles[index] = 'unnamed protein v' + str(unnamed_count)
-      unnamed_count += 1
-  return titles
+
+  return [title for title in titles if title not in uninformative]
